@@ -1,0 +1,3 @@
+dataset,accuracy,class_1_f1,source,status
+Wafer,0.9857,0.9920,historical_run.txt,historical_not_rerun
+FingerMovements,0.5500,0.6457,historical_run.txt,historical_not_rerun

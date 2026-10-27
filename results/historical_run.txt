@@ -1,0 +1,249 @@
+Wafer Epoch 1, Loss: 0.3535
+Wafer Epoch 2, Loss: 0.1346
+Wafer Epoch 3, Loss: 0.0831
+Wafer Epoch 4, Loss: 0.0304
+Wafer Epoch 5, Loss: 0.0141
+Wafer Epoch 6, Loss: 0.0103
+Wafer Epoch 7, Loss: 0.0082
+Wafer Epoch 8, Loss: 0.0151
+Wafer Epoch 9, Loss: 0.0098
+Wafer Epoch 10, Loss: 0.0042
+Wafer Epoch 11, Loss: 0.0107
+Wafer Epoch 12, Loss: 0.0019
+Wafer Epoch 13, Loss: 0.0030
+Wafer Epoch 14, Loss: 0.0014
+Wafer Epoch 15, Loss: 0.0010
+Wafer Epoch 16, Loss: 0.0008
+Wafer Epoch 17, Loss: 0.0006
+Wafer Epoch 18, Loss: 0.0005
+Wafer Epoch 19, Loss: 0.0015
+Wafer Epoch 20, Loss: 0.0227
+Wafer Accuracy: 0.9857, F1 Score: 0.9920
+
+📊 Detailed Report for Wafer
+              precision    recall  f1-score
+0              0.980033  0.885714  0.930490
+1              0.986338  0.997818  0.992045
+accuracy       0.985724  0.985724  0.985724
+macro avg      0.983186  0.941766  0.961267
+weighted avg   0.985658  0.985724  0.985404
+Top 10 SHAP Features
+Feature 109 — Mean |SHAP|: 0.0908
+Feature 108 — Mean |SHAP|: 0.0788
+Feature 29 — Mean |SHAP|: 0.0690
+Feature 38 — Mean |SHAP|: 0.0538
+Feature 16 — Mean |SHAP|: 0.0485
+Feature 110 — Mean |SHAP|: 0.0471
+Feature 37 — Mean |SHAP|: 0.0456
+Feature 113 — Mean |SHAP|: 0.0404
+Feature 39 — Mean |SHAP|: 0.0402
+Feature 112 — Mean |SHAP|: 0.0369
+전체 평균 |SHAP|: 0.019434534649351805
+FingerMovements Epoch 1, Loss: 0.7634
+FingerMovements Epoch 2, Loss: 0.6978
+FingerMovements Epoch 3, Loss: 0.6917
+FingerMovements Epoch 4, Loss: 0.6736
+FingerMovements Epoch 5, Loss: 0.6852
+FingerMovements Epoch 6, Loss: 0.6712
+FingerMovements Epoch 7, Loss: 0.6569
+FingerMovements Epoch 8, Loss: 0.6646
+FingerMovements Epoch 9, Loss: 0.6648
+FingerMovements Epoch 10, Loss: 0.6646
+FingerMovements Epoch 11, Loss: 0.6637
+FingerMovements Epoch 12, Loss: 0.6649
+FingerMovements Epoch 13, Loss: 0.6573
+FingerMovements Epoch 14, Loss: 0.6529
+FingerMovements Epoch 15, Loss: 0.6445
+FingerMovements Epoch 16, Loss: 0.6393
+FingerMovements Epoch 17, Loss: 0.6332
+FingerMovements Epoch 18, Loss: 0.6318
+FingerMovements Epoch 19, Loss: 0.6106
+FingerMovements Epoch 20, Loss: 0.6317
+FingerMovements Accuracy: 0.5500, F1 Score: 0.6457
+
+📊 Detailed Report for FingerMovements
+              precision    recall  f1-score
+0              0.583333  0.285714  0.383562
+1              0.539474  0.803922  0.645669
+accuracy       0.550000  0.550000  0.550000
+macro avg      0.561404  0.544818  0.514615
+weighted avg   0.560965  0.550000  0.517237
+Top 10 SHAP Features
+Feature 47 — Mean |SHAP|: 0.0099
+Feature 31 — Mean |SHAP|: 0.0079
+Feature 42 — Mean |SHAP|: 0.0077
+Feature 26 — Mean |SHAP|: 0.0075
+Feature 13 — Mean |SHAP|: 0.0074
+Feature 11 — Mean |SHAP|: 0.0073
+Feature 2 — Mean |SHAP|: 0.0072
+Feature 35 — Mean |SHAP|: 0.0070
+Feature 27 — Mean |SHAP|: 0.0070
+Feature 29 — Mean |SHAP|: 0.0070
+전체 평균 |SHAP|: 0.004950774591907148
+
+--- Wafer: Top LIME Features from 100 Samples ---
+Feature 29: Mean Weight = -0.0311, Count = 30
+Feature 85: Mean Weight = -0.0291, Count = 21
+Feature 87: Mean Weight = -0.0285, Count = 21
+Feature 76: Mean Weight = -0.0265, Count = 7
+Feature 86: Mean Weight = -0.0243, Count = 15
+Feature 91: Mean Weight = -0.0225, Count = 11
+Feature 101: Mean Weight = 0.0220, Count = 1
+Feature 44: Mean Weight = 0.0214, Count = 16
+Feature 129: Mean Weight = -0.0214, Count = 1
+Feature 49: Mean Weight = -0.0213, Count = 11
+Feature 83: Mean Weight = -0.0207, Count = 40
+Feature 19: Mean Weight = 0.0206, Count = 12
+Feature 98: Mean Weight = -0.0206, Count = 4
+Feature 23: Mean Weight = 0.0206, Count = 7
+Feature 61: Mean Weight = -0.0203, Count = 5
+Feature 45: Mean Weight = 0.0203, Count = 6
+Feature 62: Mean Weight = -0.0199, Count = 15
+Feature 39: Mean Weight = 0.0197, Count = 22
+Feature 115: Mean Weight = -0.0196, Count = 2
+Feature 48: Mean Weight = 0.0196, Count = 1
+Feature 43: Mean Weight = 0.0194, Count = 3
+Feature 123: Mean Weight = 0.0192, Count = 1
+Feature 133: Mean Weight = -0.0192, Count = 1
+Feature 46: Mean Weight = 0.0191, Count = 7
+Feature 41: Mean Weight = -0.0191, Count = 1
+Feature 117: Mean Weight = -0.0189, Count = 2
+Feature 14: Mean Weight = 0.0187, Count = 1
+Feature 37: Mean Weight = 0.0187, Count = 21
+Feature 18: Mean Weight = 0.0186, Count = 5
+Feature 82: Mean Weight = -0.0186, Count = 4
+Feature 31: Mean Weight = -0.0184, Count = 7
+Feature 65: Mean Weight = -0.0183, Count = 2
+Feature 105: Mean Weight = 0.0182, Count = 1
+Feature 94: Mean Weight = -0.0182, Count = 1
+Feature 28: Mean Weight = -0.0182, Count = 15
+Feature 25: Mean Weight = -0.0181, Count = 2
+Feature 104: Mean Weight = 0.0181, Count = 4
+Feature 69: Mean Weight = 0.0177, Count = 18
+Feature 40: Mean Weight = 0.0177, Count = 2
+Feature 36: Mean Weight = 0.0177, Count = 8
+Feature 128: Mean Weight = 0.0176, Count = 1
+Feature 139: Mean Weight = 0.0174, Count = 5
+Feature 114: Mean Weight = 0.0173, Count = 2
+Feature 81: Mean Weight = 0.0172, Count = 33
+Feature 88: Mean Weight = -0.0165, Count = 1
+Feature 80: Mean Weight = -0.0163, Count = 5
+Feature 102: Mean Weight = 0.0159, Count = 1
+Feature 121: Mean Weight = -0.0157, Count = 2
+Feature 89: Mean Weight = -0.0155, Count = 2
+Feature 124: Mean Weight = -0.0154, Count = 2
+Feature 135: Mean Weight = -0.0153, Count = 1
+Feature 149: Mean Weight = -0.0151, Count = 1
+Feature 66: Mean Weight = 0.0150, Count = 12
+Feature 132: Mean Weight = 0.0149, Count = 2
+Feature 119: Mean Weight = 0.0148, Count = 2
+Feature 95: Mean Weight = -0.0146, Count = 1
+Feature 35: Mean Weight = 0.0144, Count = 1
+Feature 90: Mean Weight = 0.0143, Count = 1
+Feature 26: Mean Weight = -0.0139, Count = 2
+Feature 78: Mean Weight = -0.0139, Count = 1
+Feature 142: Mean Weight = 0.0135, Count = 1
+Feature 21: Mean Weight = -0.0133, Count = 1
+Feature 38: Mean Weight = 0.0133, Count = 42
+Feature 97: Mean Weight = 0.0131, Count = 19
+Feature 79: Mean Weight = 0.0130, Count = 1
+Feature 72: Mean Weight = -0.0119, Count = 1
+Feature 34: Mean Weight = 0.0107, Count = 6
+Feature 68: Mean Weight = 0.0105, Count = 44
+Feature 93: Mean Weight = -0.0103, Count = 3
+Feature 147: Mean Weight = -0.0103, Count = 3
+Feature 111: Mean Weight = -0.0099, Count = 10
+Feature 109: Mean Weight = 0.0082, Count = 83
+Feature 136: Mean Weight = -0.0072, Count = 5
+Feature 108: Mean Weight = 0.0068, Count = 82
+Feature 15: Mean Weight = -0.0067, Count = 38
+Feature 137: Mean Weight = -0.0063, Count = 37
+Feature 112: Mean Weight = -0.0055, Count = 8
+Feature 54: Mean Weight = 0.0052, Count = 9
+Feature 106: Mean Weight = -0.0039, Count = 9
+Feature 138: Mean Weight = 0.0033, Count = 12
+Feature 16: Mean Weight = -0.0030, Count = 46
+Feature 131: Mean Weight = -0.0028, Count = 2
+Feature 107: Mean Weight = 0.0026, Count = 10
+Feature 143: Mean Weight = -0.0021, Count = 2
+Feature 70: Mean Weight = 0.0018, Count = 2
+Feature 144: Mean Weight = -0.0014, Count = 4
+Feature 71: Mean Weight = 0.0011, Count = 3
+Feature 134: Mean Weight = 0.0009, Count = 7
+Feature 110: Mean Weight = 0.0008, Count = 53
+Feature 75: Mean Weight = 0.0008, Count = 2
+Feature 113: Mean Weight = 0.0006, Count = 15
+Feature 141: Mean Weight = 0.0004, Count = 2
+Feature 22: Mean Weight = 0.0003, Count = 4
+Feature 150: Mean Weight = 0.0000, Count = 2
+
+Top Conditions (LIME rules):
+109 > 0.80 — 35 times
+108 > 0.80 — 35 times
+110 > 0.80 — 27 times
+0.37 < 109 <= 0.80 — 27 times
+16 <= -1.14 — 27 times
+15 <= -1.14 — 24 times
+0.37 < 108 <= 0.80 — 24 times
+29 <= -0.24 — 23 times
+109 <= -0.85 — 21 times
+108 <= -0.84 — 21 times
+
+
+--- FingerMovements: Top LIME Features from 100 Samples ---
+Feature 68: Mean Weight = 0.1040, Count = 17
+Feature 42: Mean Weight = 0.1039, Count = 38
+Feature 29: Mean Weight = -0.0990, Count = 39
+Feature 41: Mean Weight = -0.0844, Count = 19
+Feature 36: Mean Weight = 0.0687, Count = 29
+Feature 55: Mean Weight = 0.0628, Count = 61
+Feature 88: Mean Weight = -0.0621, Count = 25
+Feature 60: Mean Weight = -0.0588, Count = 12
+Feature 32: Mean Weight = -0.0530, Count = 60
+Feature 87: Mean Weight = -0.0529, Count = 29
+Feature 46: Mean Weight = 0.0488, Count = 15
+Feature 80: Mean Weight = 0.0468, Count = 98
+Feature 97: Mean Weight = -0.0433, Count = 12
+Feature 65: Mean Weight = -0.0426, Count = 51
+Feature 26: Mean Weight = 0.0416, Count = 6
+Feature 34: Mean Weight = -0.0401, Count = 5
+Feature 72: Mean Weight = 0.0390, Count = 17
+Feature 47: Mean Weight = -0.0380, Count = 73
+Feature 43: Mean Weight = -0.0369, Count = 12
+Feature 20: Mean Weight = -0.0362, Count = 7
+Feature 21: Mean Weight = 0.0353, Count = 2
+Feature 82: Mean Weight = -0.0326, Count = 6
+Feature 40: Mean Weight = 0.0315, Count = 9
+Feature 23: Mean Weight = -0.0312, Count = 1
+Feature 73: Mean Weight = -0.0297, Count = 2
+Feature 49: Mean Weight = -0.0287, Count = 3
+Feature 25: Mean Weight = -0.0280, Count = 2
+Feature 17: Mean Weight = 0.0271, Count = 2
+Feature 85: Mean Weight = 0.0264, Count = 10
+Feature 48: Mean Weight = 0.0261, Count = 1
+Feature 19: Mean Weight = 0.0254, Count = 3
+Feature 78: Mean Weight = 0.0250, Count = 2
+Feature 77: Mean Weight = -0.0248, Count = 1
+Feature 95: Mean Weight = -0.0237, Count = 62
+Feature 63: Mean Weight = 0.0211, Count = 1
+Feature 27: Mean Weight = -0.0198, Count = 69
+Feature 28: Mean Weight = 0.0141, Count = 6
+Feature 45: Mean Weight = -0.0078, Count = 14
+Feature 35: Mean Weight = 0.0074, Count = 80
+Feature 75: Mean Weight = 0.0066, Count = 48
+Feature 24: Mean Weight = -0.0029, Count = 5
+Feature 30: Mean Weight = 0.0024, Count = 11
+Feature 70: Mean Weight = -0.0023, Count = 31
+Feature 90: Mean Weight = 0.0002, Count = 4
+
+Top Conditions (LIME rules):
+6 > 32.32 — 41 times
+42 > 24.30 — 38 times
+27 > 25.10 — 38 times
+47 > 23.43 — 37 times
+46 > 27.65 — 37 times
+23 > 29.25 — 36 times
+30 > 28.80 — 34 times
+41 > 28.55 — 32 times
+36 > 24.35 — 29 times
+35 > 25.05 — 25 times
