@@ -1,0 +1,14 @@
+[
+  {
+    "test_index": 2532,
+    "target_class": 0,
+    "ig_convergence_delta": -0.0001233220100402832,
+    "lime_local_score": 0.21154583359833035
+  },
+  {
+    "test_index": 5962,
+    "target_class": 0,
+    "ig_convergence_delta": 0.000311434268951416,
+    "lime_local_score": 0.17404346203294807
+  }
+]

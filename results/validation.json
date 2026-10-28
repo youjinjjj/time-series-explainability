@@ -1,0 +1,16 @@
+{
+  "validated_on": "2026-10-28",
+  "python": "3.13.2",
+  "datasets": [
+    "Wafer",
+    "FingerMovements"
+  ],
+  "epochs": 10,
+  "seed": 42,
+  "explanations": [
+    "LIME",
+    "SHAP GradientExplainer",
+    "Integrated Gradients"
+  ],
+  "samples_per_dataset": 2
+}

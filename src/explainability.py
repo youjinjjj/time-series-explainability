@@ -1,112 +1,81 @@
-"""LIME, SHAP and Integrated Gradients helpers from the team experiment.
+import json
 
-Original explanation calculations are retained for provenance. Known array-axis,
-LIME feature-label parsing and SHAP plotting limitations are documented.
-"""
-import torch
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import numpy as np
 import shap
-from lime.lime_tabular import LimeTabularExplainer
-from captum.attr import IntegratedGradients
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-from lime.lime_tabular import LimeTabularExplainer
-from collections import defaultdict, Counter
-import numpy as np
 import torch
+from captum.attr import IntegratedGradients
+from lime.lime_tabular import LimeTabularExplainer
+from torch import nn
 
-import re
-from collections import defaultdict
-import numpy as np
 
-def analyze_lime_patterns(model, X_test, device, name="Model", num_samples=100):
+def plot_attribution(values, title, path):
+    limit = max(float(np.abs(values).max()), 1e-8)
+    figure, axis = plt.subplots(figsize=(10, 3.5))
+    image = axis.imshow(values.T, aspect="auto", cmap="coolwarm", vmin=-limit, vmax=limit)
+    axis.set(xlabel="Time step", ylabel="Channel", title=title)
+    axis.set_yticks(np.arange(0, values.shape[1], max(1, values.shape[1] // 6)))
+    figure.colorbar(image, ax=axis, label="Attribution")
+    figure.tight_layout()
+    figure.savefig(path, dpi=150)
+    plt.close(figure)
+
+
+def explain(model, x_train, x_test, device, output, sample_count=2, seed=42):
     model.eval()
-    model.to(device)
-    X_test_np = X_test[:, -1, :]  # (N, Features)
-    explainer = LimeTabularExplainer(X_test_np, mode="classification")
+    rng = np.random.default_rng(seed)
+    background_index = rng.choice(len(x_train), min(32, len(x_train)), replace=False)
+    background = x_train[background_index]
+    time_steps, channels = x_train.shape[1:]
+    selected = rng.choice(len(x_test), min(sample_count, len(x_test)), replace=False)
+    probability_model = nn.Sequential(model, nn.Softmax(dim=1))
 
-    def predict_fn(x):
-        x_tensor = torch.tensor(x).float().unsqueeze(1).to(device)
+    def probabilities(flattened):
+        values = flattened.reshape(-1, time_steps, channels).astype(np.float32)
+        result = []
         with torch.no_grad():
-            logits = model(x_tensor)
-            probs = torch.nn.functional.softmax(logits, dim=1)
-            return probs.detach().cpu().numpy()
+            for start in range(0, len(values), 64):
+                batch = torch.as_tensor(values[start:start + 64], device=device)
+                result.append(probability_model(batch).cpu().numpy())
+        return np.concatenate(result)
 
-    feature_impact = defaultdict(list)
-    condition_counter = defaultdict(int)
-
-    for _ in range(num_samples):
-        i = np.random.randint(0, len(X_test_np))
-        exp = explainer.explain_instance(X_test_np[i], predict_fn, num_features=10)
-        for feature_str, weight in exp.as_list():
-            condition_counter[feature_str] += 1
-            feature_nums = [int(s) for s in re.findall(r'\d+', feature_str)]
-            if not feature_nums:
-                continue
-            feature_idx = max(feature_nums)  # 가장 큰 숫자를 feature 인덱스로 간주
-            feature_impact[feature_idx].append(weight)
-
-    print(f"\n--- {name}: Top LIME Features from {num_samples} Samples ---")
-    sorted_features = sorted(feature_impact.items(), key=lambda x: -np.abs(np.mean(x[1])))
-    for feat, weights in sorted_features:
-        print(f"Feature {feat}: Mean Weight = {np.mean(weights):.4f}, Count = {len(weights)}")
-
-    print("\nTop Conditions (LIME rules):")
-    for cond, count in sorted(condition_counter.items(), key=lambda x: -x[1])[:10]:
-        print(f"{cond} - {count} times")
-
-    # --- 시각화 추가 ---
-    top_k = 20
-    top_features = sorted_features[:top_k]
-    features = [f"Feature {feat}" for feat, _ in top_features]
-    weights = [np.mean(weights) for _, weights in top_features]
-
-    plt.figure(figsize=(10, 6))
-    bars = plt.barh(features[::-1], weights[::-1])  # 역순으로 뒤집기 (가장 큰 게 위로)
-    plt.xlabel("Mean LIME Weight")
-    plt.title(f"Top {top_k} Influential Features ({name})")
-    plt.axvline(x=0, color='gray', linestyle='--')
-    plt.tight_layout()
-    plt.show()
-
-
-def explain_with_shap(model, X_train, X_test, device, name="Model"):
-    model.eval()
-    model.to(device)
-    X_train_tensor = torch.tensor(X_train[:100]).to(device)
-    X_test_tensor = torch.tensor(X_test[:10]).to(device)
-
-    explainer = shap.GradientExplainer(model, X_train_tensor)
-    shap_values = explainer.shap_values(X_test_tensor)
-
-    # SHAP 값이 리스트인지 확인하고 image_plot에 맞게 포맷 변경
-    if isinstance(shap_values, list):
-        shap.image_plot(shap_values, X_test_tensor.cpu().numpy(), show=False)
-    else:
-        shap.image_plot([shap_values], X_test_tensor.cpu().numpy(), show=False)
-
-    plt.suptitle(f"SHAP Explanation - {name}")
-    plt.show()
-
-def explain_with_integrated_gradients(model, X_test, device, name="Model"):
-    model.eval()
-    model.to(device)
-    X_sample = torch.tensor(X_test[0:1]).to(device).requires_grad_(True)
-
-    ig = IntegratedGradients(model)
-    attr, delta = ig.attribute(X_sample, target=1, return_convergence_delta=True)
-
-    attr = attr.squeeze().detach().cpu().numpy()  # (sequence_len, feature_dim) or (sequence_len,)
-
-    # 1차원일 경우 2D로 reshape
-    if attr.ndim == 1:
-        attr = attr.reshape(-1, 1)
-
-    plt.figure(figsize=(10, 4))
-    plt.imshow(attr.T, aspect='auto', cmap='coolwarm')
-    plt.colorbar()
-    plt.title(f"Integrated Gradients Attribution - {name}")
-    plt.xlabel("Time Steps")
-    plt.ylabel("Features")
-    plt.show()
+    lime = LimeTabularExplainer(
+        background.reshape(len(background), -1), mode="classification", random_state=seed,
+        feature_names=[f"t{time}_c{channel}" for time in range(time_steps) for channel in range(channels)],
+        discretize_continuous=False,
+    )
+    shap_explainer = shap.GradientExplainer(probability_model, torch.as_tensor(background, device=device))
+    integrated_gradients = IntegratedGradients(probability_model)
+    baseline = torch.as_tensor(background.mean(axis=0, keepdims=True), device=device)
+    summary = []
+    for index in selected:
+        sample = x_test[index:index + 1]
+        tensor = torch.as_tensor(sample, device=device)
+        target = int(probabilities(sample.reshape(1, -1)).argmax())
+        explanation = lime.explain_instance(
+            sample.reshape(-1), probabilities, labels=(target,), num_features=min(20, time_steps * channels),
+            num_samples=400,
+        )
+        lime_values = np.zeros(time_steps * channels)
+        for feature, weight in explanation.as_map()[target]:
+            lime_values[feature] = weight
+        lime_values = lime_values.reshape(time_steps, channels)
+        raw_shap = shap_explainer.shap_values(tensor, nsamples=64, rseed=seed)
+        shap_values = raw_shap[target][0] if isinstance(raw_shap, list) else np.asarray(raw_shap)[0, ..., target]
+        ig, delta = integrated_gradients.attribute(
+            tensor, baselines=baseline, target=target, n_steps=64,
+            internal_batch_size=8, return_convergence_delta=True,
+        )
+        ig_values = ig.detach().cpu().numpy()[0]
+        for name, values in (("lime", lime_values), ("shap", shap_values), ("ig", ig_values)):
+            if values.shape != (time_steps, channels) or not np.isfinite(values).all():
+                raise ValueError(f"Invalid {name} attribution shape or values: {values.shape}")
+            np.save(output / f"sample_{index}_{name}.npy", values)
+            plot_attribution(values, f"{name.upper()} / sample {index} / class {target}",
+                             output / f"sample_{index}_{name}.png")
+        summary.append({"test_index": int(index), "target_class": target,
+                        "ig_convergence_delta": float(delta.item()), "lime_local_score": float(explanation.score)})
+        print(f"Explanations saved: sample {index}", flush=True)
+    (output / "explanations.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

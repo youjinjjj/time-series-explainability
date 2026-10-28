@@ -1,0 +1,58 @@
+{
+  "dataset": "FingerMovements",
+  "train_shape": [
+    316,
+    50,
+    28
+  ],
+  "test_shape": [
+    100,
+    50,
+    28
+  ],
+  "accuracy": 0.46,
+  "macro_f1": 0.45454545454545453,
+  "labels": [
+    "left",
+    "right"
+  ],
+  "classification_report": {
+    "left": {
+      "precision": 0.43902439024390244,
+      "recall": 0.3673469387755102,
+      "f1-score": 0.4,
+      "support": 49.0
+    },
+    "right": {
+      "precision": 0.4745762711864407,
+      "recall": 0.5490196078431373,
+      "f1-score": 0.509090909090909,
+      "support": 51.0
+    },
+    "accuracy": 0.46,
+    "macro avg": {
+      "precision": 0.45680033071517157,
+      "recall": 0.45818327330932374,
+      "f1-score": 0.45454545454545453,
+      "support": 100.0
+    },
+    "weighted avg": {
+      "precision": 0.4571558495245969,
+      "recall": 0.46,
+      "f1-score": 0.4556363636363636,
+      "support": 100.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      18,
+      31
+    ],
+    [
+      23,
+      28
+    ]
+  ],
+  "epochs": 10,
+  "seed": 42
+}

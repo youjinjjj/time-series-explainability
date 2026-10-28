@@ -5,13 +5,11 @@ venv/
 .ipynb_checkpoints/
 .env
 .env.*
-!.env.example
 data/*
 !data/README.md
 outputs/
-*.pth
 *.pt
+*.pth
+*.npy
 *.pkl
 *.zip
-.DS_Store
-Thumbs.db

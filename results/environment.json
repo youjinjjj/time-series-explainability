@@ -1,0 +1,14 @@
+{
+  "python": "3.13.2",
+  "packages": {
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "torch": "2.7.0",
+    "scikit-learn": "1.6.1",
+    "sktime": "0.37.0",
+    "matplotlib": "3.10.3",
+    "lime": "0.2.0.1",
+    "shap": "0.54.1",
+    "captum": "0.9.0"
+  }
+}

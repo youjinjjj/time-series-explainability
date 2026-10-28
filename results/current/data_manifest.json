@@ -1,0 +1,18 @@
+[
+  {
+    "path": "Wafer/Wafer_TRAIN.ts",
+    "sha256": "5950e49f7c6619d25c2ee123579560bf2a60dc6e01620793bc117acf620291ac"
+  },
+  {
+    "path": "Wafer/Wafer_TEST.ts",
+    "sha256": "afe988718ce5fe21b2fafe0c1f49a153d5e02dc15997e1d60846918e5c08a250"
+  },
+  {
+    "path": "FingerMovements/FingerMovements_TRAIN.ts",
+    "sha256": "bb8ec0c9a55c3a75f1bee488aa2118e365448d59bcfdbbb23843b31a9c2f6791"
+  },
+  {
+    "path": "FingerMovements/FingerMovements_TEST.ts",
+    "sha256": "95d0ee150e5dea8f9fcb1002c509027327b4f336d9a3e630446141d7c61c5f74"
+  }
+]
